@@ -40,20 +40,7 @@ namespace HamsterCheese.AmongUsMemory
 
         Dictionary<string, CancellationTokenSource> Tokens = new Dictionary<string, CancellationTokenSource>();
 
-
-        [Obsolete] 
-        public void ObserveState()
-        {
-            if (PlayerInfo.HasValue)
-            {
-                if (observe_dieFlag == false && PlayerInfo.Value.IsDead == 1)
-                {
-                    observe_dieFlag = true;
-                    onDie?.Invoke(Position, PlayerInfo.Value.ColorId);
-                }
-            }
-        }
-
+     
 
         /// <summary>
         /// PlayerInfo 가져오기 
@@ -89,7 +76,7 @@ namespace HamsterCheese.AmongUsMemory
             get
             {
                 var lsPtr = Instance.myLight;
-                Console.WriteLine("light source : " + lsPtr.GetAddress());
+                //Console.WriteLine("light source : " + lsPtr.GetAddress());
                 var lsBytes = Cheese.mem.ReadBytes(lsPtr.GetAddress(), Utils.SizeOf<LightSource>());
                 var ls = Utils.FromBytes<LightSource>(lsBytes);
                 return ls; 
@@ -120,6 +107,11 @@ namespace HamsterCheese.AmongUsMemory
         {
             var targetPointer = Utils.GetMemberPointer(PlayerInfoPTROffset, typeof(PlayerInfo), "IsDead");
             Cheese.mem.WriteMemory(targetPointer.GetAddress(), "byte", value.ToString());
+        }
+        public float ReadMemory_KillTimer()
+        {
+            var targetPointer = Utils.GetMemberPointer(PlayerControllPTR, typeof(PlayerControl), "killTimer");
+            return Cheese.mem.ReadFloat(targetPointer.GetAddress(), "float");
         }
         /// <summary>
         /// Set Player KillTimer

@@ -45,7 +45,7 @@ namespace HamsterCheese.AmongUsMemory
                 {
                     prevShipStatus = shipStatus;
                     onChangeShipStatus?.Invoke(shipStatus.Type);
-                    Console.WriteLine("OnShipStatusChanged");
+                    //Console.WriteLine("OnShipStatusChanged");
                 }
                 else
                 { 
@@ -94,7 +94,7 @@ namespace HamsterCheese.AmongUsMemory
                     if (resultInst.MapScale < 6470545000000 && resultInst.MapScale > 0) // 0.1f
                     {  
                         shipStatus = resultInst;
-                        Console.WriteLine($"ShipStatus selected {result.GetAddress()}");
+                        //Console.WriteLine($"ShipStatus selected {result.GetAddress()}");
                     }
                 }
             }  
@@ -115,7 +115,7 @@ namespace HamsterCheese.AmongUsMemory
                 if (resultInst.connection != IntPtr.Zero && resultInst.GameId != 0 && resultInst.GameState < 1000)
                 {
                     amongUsClient = resultInst;
-                    Console.WriteLine($"AmongUsClient selected {result.GetAddress()}");
+                    //Console.WriteLine($"AmongUsClient selected {result.GetAddress()}");
                 }
             }
             return amongUsClient;

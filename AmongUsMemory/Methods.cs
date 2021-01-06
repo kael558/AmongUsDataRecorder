@@ -22,7 +22,7 @@ namespace HamsterCheese. AmongUsMemory
         [Init]
         public static void Init_PlayerControl_GetData()
         {
-            Console.WriteLine("Init PlayerControl GetData");
+           // Console.WriteLine("Init PlayerControl GetData");
             if (PlayerControl_GetDataPTR == IntPtr.Zero)
             {
                 var aobScan = HamsterCheese.AmongUsMemory.Cheese.mem.AoBScan(Pattern.PlayerControl_GetData);
@@ -37,7 +37,7 @@ namespace HamsterCheese. AmongUsMemory
         [Call]
         public static int Call_PlayerControl_GetData(IntPtr playerInfoPtr)
         { 
-            Console.WriteLine("Call_PlayerControl_GetData");
+           // Console.WriteLine("Call_PlayerControl_GetData");
             if (PlayerControl_GetDataPTR != IntPtr.Zero)
             {
                 var ptr = PlayerControl_GetDataPTR;
